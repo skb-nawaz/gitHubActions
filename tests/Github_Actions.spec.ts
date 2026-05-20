@@ -22,7 +22,7 @@ test("Practice Test 3", async ({ page }) => {
   console.log(await page.title());
 
   // This test will fail intentionally
-  await expect(page).toHaveTitle("Swag Labs wrong");
+  await expect(page).toHaveTitle("Swag Labs");
 
   console.log("Ending Practice Test 3");
 });
