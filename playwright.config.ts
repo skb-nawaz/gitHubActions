@@ -12,6 +12,10 @@ import { defineConfig, devices } from "@playwright/test";
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  testMatch: [
+    "tests/jenkins_1_with_local_playwright_project.spec.ts",
+    "tests/jenkins_2_with_local_playwright_project.spec.ts",
+  ],
   testDir: "tests/",
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -20,7 +24,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 1 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 2 : undefined,
+  workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [["html"], ["github"]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -42,7 +46,7 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
 
-/*     {
+    {
       name: "firefox",
       use: { ...devices["Desktop Firefox"] },
     },
@@ -50,8 +54,7 @@ export default defineConfig({
     {
       name: "webkit",
       use: { ...devices["Desktop Safari"] },
-    }, */
-
+    },
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
